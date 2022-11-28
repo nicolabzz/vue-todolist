@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- css -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <title>TODO LIST!</title>
+
+</head>
+<body>
+
+    <section id="app" class="container">
+        <div class="container-top">
+
+            <input placeholder="New task"
+            v-model="newTask"
+             @keydown.enter="addTask"
+             class="addtask-input"
+             type="text">
+            
+             <button class="button-addtask" @click="addTask">
+                Add Task
+            </button>
+
+            <div class="error-message">
+                {{ error }}
+            </div>
+        </div>
+
+
+        <div class="container-bottom">
+            <section>
+
+                <div class="task" v-if="todoTasks.length == 0">
+                    There are no tasks at the moment.
+                </div>
+                <div v-for="task in todoTasks" class="task">
+                    <div>
+                        <span class="task-icon" @click="toggleTask(task)" :class="task.isDone ? 'task-icon-check' : ''"></span>
+                        <span>
+                            {{ task.text }}
+                        </span>
+                    </div>
+                    <div class="delete-btn" @click="deleteTask(task)"></div>
+                </div>
+     
+            </section> 
+        </div>
+    </section>
+  
+    <!-- Vue -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.13/dist/vue.js"></script>
+    <!-- js -->
+    <script src="js/script.js"></script>
+</body>
+</html>
